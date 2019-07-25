@@ -17,22 +17,21 @@ int getFreq(char hostname[], long *freq)
       *freq = (long)(2.2*pow(10,9));
       return 0;
   }
-  if (strcmp(hostname, "naples1") == 0){
-      *freq = (long)(2.3*pow(10,9));
-      return 0;
-  }
   return -1;
 }
 
-void scale(long size, double scale) {
-  double * restrict a;
-  double * restrict b;
+void triad(long size) {
+  double * restrict a, * restrict b, * restrict c, * restrict d;
   a = aligned_alloc(64, size*sizeof(double));
   b = aligned_alloc(64, size*sizeof(double));
+  c = aligned_alloc(64, size*sizeof(double));
+  d = aligned_alloc(64, size*sizeof(double));
 
 
   for(int i=0; i<size; ++i){
-    a[i] = 0.000000123123123123;
+    b[i] = 0.000000123123123123;
+    c[i] = 0.000012123123123123;
+    d[i] = 0.000032321321321321;
   }
 
   double wcs, wce, ct, runtime;
@@ -45,7 +44,7 @@ void scale(long size, double scale) {
       #pragma omp simd // enabled O3-like optimizations with O1
       #pragma vector aligned
       for(long i=0; i < size; ++i){
-        b[i] = scale * a[i];
+        a[i] = b[i] + c[i] * d[i];
       }
     } 
     timing(&wce, &ct);
@@ -58,7 +57,7 @@ void scale(long size, double scale) {
   int rc = getFreq(hostname, &freq);
   printf("%12.1f | %11.8f | %9.3f | %7.2f | %7.1f | %7.1f | %6d | %4ld \n", (double)size*sizeof(double)/1000.0, runtime, 8.0*(double)size*(double)repeat*1e-6/runtime, runtime*(double)freq/((double)(size*repeat)/8.0),32.0*(double)repeat*(double)size/runtime/1024.0/1024.0, (double)repeat*(double)size/runtime/1000.0/1000.0, repeat, size);
   
-  free(a); free(b);
+  free(a); free(b); free(c);
 }
 
 
@@ -68,13 +67,13 @@ int main(int argc, char *argv[])
   gethostname(hostname, 1024);
   long freq;
   getFreq(hostname, &freq);
-  printf("SCALE b[i] = s * a[i], 16 byte/it, 1 Flop/it\n");
+  printf("TRIAD a[i] = b[i] + c[i] * d[i], 32 byte/it, 2 Flop/it\n");
   printf("Checking for %s. Frequency *must* be set to %4.2f GHz for valid cy/CL.\n", hostname, (double)freq/1000000000);
   printf("Size (KByte) |   runtime   |  MFlop/s  |  cy/CL  |  MB/s   |  MLUP/s | repeat | size\n");
   for(int i=20; i<=35; ++i) {
     int size = (int)pow(1.3, i);
     size = (size/64)*64;
-    scale(size, 1.23123);
+    triad(size);
   }
   return 0;
 }
