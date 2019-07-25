@@ -1,0 +1,61 @@
+
+[0] Code Region
+
+Iterations:        100
+Instructions:      1000
+Total Cycles:      324
+Dispatch Width:    6
+IPC:               3.09
+Block RThroughput: 2.5
+
+
+Instruction Info:
+[1]: #uOps
+[2]: Latency
+[3]: RThroughput
+[4]: MayLoad
+[5]: MayStore
+[6]: HasSideEffects (U)
+
+[1]    [2]    [3]    [4]    [5]    [6]    Instructions:
+ 1      7     0.50    *                   vmovupd	(%r9,%rax), %ymm7
+ 2      11    0.50    *                   vaddpd	(%r10,%rax), %ymm7, %ymm0
+ 2      11    0.50    *                   vaddpd	(%r8,%rax), %ymm0, %ymm0
+ 2      11    0.50    *                   vaddpd	(%rdi,%rax), %ymm0, %ymm0
+ 2      11    0.50    *                   vaddpd	(%rsi,%rax), %ymm0, %ymm0
+ 1      4     0.50                        vmulpd	%ymm1, %ymm0, %ymm0
+ 2      1     1.00           *            vmovupd	%ymm0, (%rdx,%rax)
+ 1      1     0.25                        addq	$32, %rax
+ 1      1     0.25                        cmpq	%rax, %r14
+ 1      1     0.50                        jne	.L24
+
+
+Resources:
+[0]   - SKXDivider
+[1]   - SKXFPDivider
+[2]   - SKXPort0
+[3]   - SKXPort1
+[4]   - SKXPort2
+[5]   - SKXPort3
+[6]   - SKXPort4
+[7]   - SKXPort5
+[8]   - SKXPort6
+[9]   - SKXPort7
+
+
+Resource pressure per iteration:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    
+ -      -     2.52   2.51   2.52   2.53   1.00   1.48   1.49   0.95   
+
+Resource pressure by instruction:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    Instructions:
+ -      -      -      -     0.51   0.49    -      -      -      -     vmovupd	(%r9,%rax), %ymm7
+ -      -     0.49   0.51   0.46   0.54    -      -      -      -     vaddpd	(%r10,%rax), %ymm7, %ymm0
+ -      -     0.52   0.48   0.53   0.47    -      -      -      -     vaddpd	(%r8,%rax), %ymm0, %ymm0
+ -      -     0.51   0.49   0.45   0.55    -      -      -      -     vaddpd	(%rdi,%rax), %ymm0, %ymm0
+ -      -     0.53   0.47   0.55   0.45    -      -      -      -     vaddpd	(%rsi,%rax), %ymm0, %ymm0
+ -      -     0.44   0.56    -      -      -      -      -      -     vmulpd	%ymm1, %ymm0, %ymm0
+ -      -      -      -     0.02   0.03   1.00    -      -     0.95   vmovupd	%ymm0, (%rdx,%rax)
+ -      -      -      -      -      -      -     0.97   0.03    -     addq	$32, %rax
+ -      -      -      -      -      -      -     0.51   0.49    -     cmpq	%rax, %r14
+ -      -     0.03    -      -      -      -      -     0.97    -     jne	.L24
