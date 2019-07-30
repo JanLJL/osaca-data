@@ -8,16 +8,16 @@ X86FLAGS="-fopenmp-simd -fargument-noalias -funroll-loops"
 $CC -O3 -c timing.c
 #$CC -O3 -mcpu=thunderx2t99 -c timing.c
 
-# Compile for CSL
+# Compile for csx
 #$CC $X86FLAGS -march=cascadelake -O1 -c scale.c
 #$CC $X86FLAGS -march=cascadelake -O1 -S scale.c -o scale.s.skl.O1.s
 #$CC scale.o timing.o -lm -o a.scale.skl.O1
 #$CC $X86FLAGS -march=cascadelake -O2 -c scale.c
 #$CC $X86FLAGS -march=cascadelake -O2 -S scale.c -o scale.s.skl.O2.s
 #$CC scale.o timing.o -lm -o a.scale.skl.O2
-#$CC $X86FLAGS -march=cascadelake -O3 -c scale.c
-#$CC $X86FLAGS -march=cascadelake -O3 -S scale.c -o scale.s.csl.O3.s
-#$CC scale.o timing.o -lm -o a.scale.csl.O3
+$CC $X86FLAGS -march=cascadelake -O3 -c scale.c
+$CC $X86FLAGS -march=cascadelake -O3 -S scale.c -o scale.s.csx.O3.s
+$CC scale.o timing.o -lm -o a.scale.csx.O3
 
 # Compile for SKL
 #$CC $X86FLAGS -march=skylake-avx512 -O1 -c scale.c
@@ -52,6 +52,6 @@ $CC -O3 -c timing.c
 #$CC $X86FLAGS -march=znver1 -mavx2 -mfma -O2 -c scale.c
 #$CC $X86FLAGS -march=znver1 -mavx2 -mfma -O2 -S scale.c -o scale.s.zen.O2.s
 #$CC scale.o timing.o -lm -o a.scale.zen.O2
-$CC $X86FLAGS -march=znver1 -mavx2 -mfma -O3 -c scale.c
-$CC $X86FLAGS -march=znver1 -mavx2 -mfma -O3 -S scale.c -o scale.s.zen.O3.s
-$CC scale.o timing.o -lm -o a.scale.zen.O3
+# $CC $X86FLAGS -march=znver1 -mavx2 -mfma -O3 -c scale.c
+# $CC $X86FLAGS -march=znver1 -mavx2 -mfma -O3 -S scale.c -o scale.s.zen.O3.s
+# $CC scale.o timing.o -lm -o a.scale.zen.O3

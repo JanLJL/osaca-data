@@ -1,0 +1,81 @@
+
+[0] Code Region
+
+Iterations:        100
+Instructions:      1900
+Total Cycles:      816
+Dispatch Width:    4
+IPC:               2.33
+Block RThroughput: 8.0
+
+
+Instruction Info:
+[1]: #uOps
+[2]: Latency
+[3]: RThroughput
+[4]: MayLoad
+[5]: MayStore
+[6]: HasSideEffects (U)
+
+[1]    [2]    [3]    [4]    [5]    [6]    Instructions:
+ 2      10    0.50    *                   vmulpd	(%rbp,%r10), %xmm3, %xmm11
+ 2      10    0.50    *                   vmulpd	16(%rbp,%r10), %xmm3, %xmm12
+ 2      10    0.50    *                   vmulpd	32(%rbp,%r10), %xmm3, %xmm13
+ 2      10    0.50    *                   vmulpd	48(%rbp,%r10), %xmm3, %xmm14
+ 2      10    0.50    *                   vmulpd	64(%rbp,%r10), %xmm3, %xmm15
+ 2      10    0.50    *                   vmulpd	80(%rbp,%r10), %xmm3, %xmm0
+ 1      1     0.50           *            vmovaps	%xmm11, (%r12,%r10)
+ 1      1     0.50           *            vmovaps	%xmm12, 16(%r12,%r10)
+ 2      10    0.50    *                   vmulpd	96(%rbp,%r10), %xmm3, %xmm7
+ 2      10    0.50    *                   vmulpd	112(%rbp,%r10), %xmm3, %xmm1
+ 1      1     0.50           *            vmovaps	%xmm13, 32(%r12,%r10)
+ 1      1     0.50           *            vmovaps	%xmm14, 48(%r12,%r10)
+ 1      1     0.50           *            vmovaps	%xmm15, 64(%r12,%r10)
+ 1      1     0.50           *            vmovaps	%xmm0, 80(%r12,%r10)
+ 1      1     0.50           *            vmovaps	%xmm7, 96(%r12,%r10)
+ 1      1     0.50           *            vmovaps	%xmm1, 112(%r12,%r10)
+ 1      1     0.25                        subq	$-128, %r10
+ 1      1     0.25                        cmpq	%r13, %r10
+ 1      1     0.25                        jne	.L24
+
+
+Resources:
+[0]   - ZnAGU0
+[1]   - ZnAGU1
+[2]   - ZnALU0
+[3]   - ZnALU1
+[4]   - ZnALU2
+[5]   - ZnALU3
+[6]   - ZnDivider
+[7]   - ZnFPU0
+[8]   - ZnFPU1
+[9]   - ZnFPU2
+[10]  - ZnFPU3
+[11]  - ZnMultiplier
+
+
+Resource pressure per iteration:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    [10]   [11]   
+8.00   8.00   0.75   0.75   0.75   0.75    -     4.00   4.00    -      -      -     
+
+Resource pressure by instruction:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    [10]   [11]   Instructions:
+0.98   0.02    -      -      -      -      -      -     1.00    -      -      -     vmulpd	(%rbp,%r10), %xmm3, %xmm11
+1.00    -      -      -      -      -      -     1.00    -      -      -      -     vmulpd	16(%rbp,%r10), %xmm3, %xmm12
+0.98   0.02    -      -      -      -      -      -     1.00    -      -      -     vmulpd	32(%rbp,%r10), %xmm3, %xmm13
+1.00    -      -      -      -      -      -     1.00    -      -      -      -     vmulpd	48(%rbp,%r10), %xmm3, %xmm14
+0.98   0.02    -      -      -      -      -      -     1.00    -      -      -     vmulpd	64(%rbp,%r10), %xmm3, %xmm15
+1.00    -      -      -      -      -      -     1.00    -      -      -      -     vmulpd	80(%rbp,%r10), %xmm3, %xmm0
+ -     1.00    -      -      -      -      -      -      -      -      -      -     vmovaps	%xmm11, (%r12,%r10)
+0.03   0.97    -      -      -      -      -      -      -      -      -      -     vmovaps	%xmm12, 16(%r12,%r10)
+0.97   0.03    -      -      -      -      -      -     1.00    -      -      -     vmulpd	96(%rbp,%r10), %xmm3, %xmm7
+1.00    -      -      -      -      -      -     1.00    -      -      -      -     vmulpd	112(%rbp,%r10), %xmm3, %xmm1
+ -     1.00    -      -      -      -      -      -      -      -      -      -     vmovaps	%xmm13, 32(%r12,%r10)
+0.02   0.98    -      -      -      -      -      -      -      -      -      -     vmovaps	%xmm14, 48(%r12,%r10)
+ -     1.00    -      -      -      -      -      -      -      -      -      -     vmovaps	%xmm15, 64(%r12,%r10)
+0.02   0.98    -      -      -      -      -      -      -      -      -      -     vmovaps	%xmm0, 80(%r12,%r10)
+ -     1.00    -      -      -      -      -      -      -      -      -      -     vmovaps	%xmm7, 96(%r12,%r10)
+0.02   0.98    -      -      -      -      -      -      -      -      -      -     vmovaps	%xmm1, 112(%r12,%r10)
+ -      -     0.25   0.25   0.25   0.25    -      -      -      -      -      -     subq	$-128, %r10
+ -      -     0.25   0.25   0.25   0.25    -      -      -      -      -      -     cmpq	%r13, %r10
+ -      -     0.25   0.25   0.25   0.25    -      -      -      -      -      -     jne	.L24

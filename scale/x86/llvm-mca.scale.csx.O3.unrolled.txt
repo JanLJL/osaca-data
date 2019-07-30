@@ -1,0 +1,79 @@
+
+[0] Code Region
+
+Iterations:        100
+Instructions:      1900
+Total Cycles:      817
+Dispatch Width:    6
+IPC:               2.33
+Block RThroughput: 8.0
+
+
+Instruction Info:
+[1]: #uOps
+[2]: Latency
+[3]: RThroughput
+[4]: MayLoad
+[5]: MayStore
+[6]: HasSideEffects (U)
+
+[1]    [2]    [3]    [4]    [5]    [6]    Instructions:
+ 2      11    0.50    *                   vmulpd	(%r12,%rdi), %ymm3, %ymm12
+ 2      11    0.50    *                   vmulpd	32(%r12,%rdi), %ymm3, %ymm13
+ 2      11    0.50    *                   vmulpd	64(%r12,%rdi), %ymm3, %ymm14
+ 2      11    0.50    *                   vmulpd	96(%r12,%rdi), %ymm3, %ymm15
+ 2      11    0.50    *                   vmulpd	128(%r12,%rdi), %ymm3, %ymm0
+ 2      11    0.50    *                   vmulpd	160(%r12,%rdi), %ymm3, %ymm1
+ 2      11    0.50    *                   vmulpd	192(%r12,%rdi), %ymm3, %ymm5
+ 2      11    0.50    *                   vmulpd	224(%r12,%rdi), %ymm3, %ymm4
+ 2      1     1.00           *            vmovapd	%ymm12, (%r13,%rdi)
+ 2      1     1.00           *            vmovapd	%ymm13, 32(%r13,%rdi)
+ 2      1     1.00           *            vmovapd	%ymm14, 64(%r13,%rdi)
+ 2      1     1.00           *            vmovapd	%ymm15, 96(%r13,%rdi)
+ 2      1     1.00           *            vmovapd	%ymm0, 128(%r13,%rdi)
+ 2      1     1.00           *            vmovapd	%ymm1, 160(%r13,%rdi)
+ 2      1     1.00           *            vmovapd	%ymm5, 192(%r13,%rdi)
+ 2      1     1.00           *            vmovapd	%ymm4, 224(%r13,%rdi)
+ 1      1     0.25                        addq	$256, %rdi
+ 1      1     0.25                        cmpq	%rdi, %r15
+ 1      1     0.50                        jne	.L24
+
+
+Resources:
+[0]   - SKXDivider
+[1]   - SKXFPDivider
+[2]   - SKXPort0
+[3]   - SKXPort1
+[4]   - SKXPort2
+[5]   - SKXPort3
+[6]   - SKXPort4
+[7]   - SKXPort5
+[8]   - SKXPort6
+[9]   - SKXPort7
+
+
+Resource pressure per iteration:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    
+ -      -     4.00   4.00   5.36   5.36   8.00   1.49   1.51   5.28   
+
+Resource pressure by instruction:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    Instructions:
+ -      -      -     1.00   0.32   0.68    -      -      -      -     vmulpd	(%r12,%rdi), %ymm3, %ymm12
+ -      -     1.00    -     0.68   0.32    -      -      -      -     vmulpd	32(%r12,%rdi), %ymm3, %ymm13
+ -      -      -     1.00   0.32   0.68    -      -      -      -     vmulpd	64(%r12,%rdi), %ymm3, %ymm14
+ -      -     1.00    -     0.41   0.59    -      -      -      -     vmulpd	96(%r12,%rdi), %ymm3, %ymm15
+ -      -      -     1.00   0.32   0.68    -      -      -      -     vmulpd	128(%r12,%rdi), %ymm3, %ymm0
+ -      -     1.00    -     0.68   0.32    -      -      -      -     vmulpd	160(%r12,%rdi), %ymm3, %ymm1
+ -      -      -     1.00   0.32   0.68    -      -      -      -     vmulpd	192(%r12,%rdi), %ymm3, %ymm5
+ -      -     1.00    -     0.68   0.32    -      -      -      -     vmulpd	224(%r12,%rdi), %ymm3, %ymm4
+ -      -      -      -     0.04   0.03   1.00    -      -     0.93   vmovapd	%ymm12, (%r13,%rdi)
+ -      -      -      -     0.31   0.03   1.00    -      -     0.66   vmovapd	%ymm13, 32(%r13,%rdi)
+ -      -      -      -     0.30   0.03   1.00    -      -     0.67   vmovapd	%ymm14, 64(%r13,%rdi)
+ -      -      -      -     0.03   0.03   1.00    -      -     0.94   vmovapd	%ymm15, 96(%r13,%rdi)
+ -      -      -      -     0.03   0.04   1.00    -      -     0.93   vmovapd	%ymm0, 128(%r13,%rdi)
+ -      -      -      -     0.30   0.31   1.00    -      -     0.39   vmovapd	%ymm1, 160(%r13,%rdi)
+ -      -      -      -     0.31   0.31   1.00    -      -     0.38   vmovapd	%ymm5, 192(%r13,%rdi)
+ -      -      -      -     0.31   0.31   1.00    -      -     0.38   vmovapd	%ymm4, 224(%r13,%rdi)
+ -      -      -      -      -      -      -     0.99   0.01    -     addq	$256, %rdi
+ -      -      -      -      -      -      -     0.50   0.50    -     cmpq	%rdi, %r15
+ -      -      -      -      -      -      -      -     1.00    -     jne	.L24

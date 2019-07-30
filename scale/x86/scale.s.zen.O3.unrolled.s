@@ -254,6 +254,7 @@ scale:
 	je	.L113
     movl    $111,%ebx       #IACA START MARKER
     .byte   100,103,144     #IACA START MARKER
+    # LLVM-MCA-BEGIN
 .L24:
 	vmulpd	0(%rbp,%r10), %xmm3, %xmm11
 	vmulpd	16(%rbp,%r10), %xmm3, %xmm12
@@ -274,6 +275,7 @@ scale:
 	subq	$-128, %r10
 	cmpq	%r13, %r10
 	jne	.L24
+    # LLVM-MCA-END
     movl    $222,%ebx       #IACA END MARKER
     .byte   100,103,144     #IACA END MARKER
 .L113:
