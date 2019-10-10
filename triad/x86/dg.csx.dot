@@ -1,0 +1,78 @@
+digraph  {
+	node [colorscheme=accent8];
+	edge [colorscheme=accent8];
+	"185: jne"	 [instruction_form="{'instruction': 'jne', 'operands': {'source': [], 'destination': [{'identifier': {'name': '.L22'}}], 'src_dst': [], 'operand_list\
+': [{'identifier': {'name': '.L22'}}]}, 'directive': None, 'comment': None, 'label': None, 'line': 'jne\t.L22', 'line_number': 185\
+, 'flags': ['not_bound'], 'port_pressure': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 'throughput': 0.0, 'latency'\
+: 0.0, 'latency_wo_load': 0.0, 'latency_cp': 0, 'latency_lcd': 0}",
+		shape=rectangle];
+	"179: label"	 [fontname=italic,
+		fontsize=11.0,
+		instruction_form="{'instruction': None, 'operands': None, 'directive': None, 'comment': None, 'label': '.L22', 'line': '.L22:', 'line_number': 179\
+, 'port_pressure': [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 'flags': [], 'throughput': 0.0, 'latency': 0.0, 'latency\
+_wo_load': 0.0, 'latency_cp': 0, 'latency_lcd': 0}",
+		shape=rectangle];
+	"180: vmovapd"	 [instruction_form="{'instruction': 'vmovapd', 'operands': {'source': [{'memory': {'offset': {'value': '0'}, 'base': {'name': 'r13'}, 'index': {'name\
+': 'rax'}, 'scale': 1}}], 'destination': [{'register': {'name': 'ymm0'}}], 'src_dst': [], 'operand_list': [{'memory': {'offset':\
+ {'value': '0'}, 'base': {'name': 'r13'}, 'index': {'name': 'rax'}, 'scale': 1}}, {'register': {'name': 'ymm0'}}]}, 'directive':\
+ None, 'comment': None, 'label': None, 'line': 'vmovapd\t0(%r13,%rax), %ymm0', 'line_number': 180, 'flags': ['performs_load', 'is\
+_load_instruction'], 'port_pressure': [0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, 0.0], 'throughput': 1.0, 'latency': 4.0\
+, 'latency_wo_load': 4.0, 'latency_cp': 4.0, 'latency_lcd': 0}",
+		penwidth=4,
+		shape=rectangle,
+		style=bold];
+	"181: vfmadd213pd"	 [instruction_form="{'instruction': 'vfmadd213pd', 'operands': {'source': [{'memory': {'offset': None, 'base': {'name': 'r14'}, 'index': {'name': 'rax\
+'}, 'scale': 1}}, {'register': {'name': 'ymm1'}}], 'destination': [], 'src_dst': [{'register': {'name': 'ymm0'}}], 'operand_list\
+': [{'memory': {'offset': None, 'base': {'name': 'r14'}, 'index': {'name': 'rax'}, 'scale': 1}}, {'register': {'name': 'ymm1'}},\
+ {'register': {'name': 'ymm0'}}]}, 'directive': None, 'comment': None, 'label': None, 'line': 'vfmadd213pd\t(%r14,%rax), %ymm1, \
+%ymm0', 'line_number': 181, 'flags': ['performs_load'], 'port_pressure': [0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, 0.0]\
+, 'throughput': 0.5, 'latency': 8.0, 'latency_wo_load': 4.0, 'latency_cp': 4.0, 'latency_lcd': 0}",
+		penwidth=4,
+		shape=rectangle,
+		style=bold];
+	"180: vmovapd" -> "181: vfmadd213pd"	 [label=4.0,
+		latency=4.0,
+		penwidth=3,
+		style=bold];
+	"182: vmovapd"	 [instruction_form="{'instruction': 'vmovapd', 'operands': {'source': [{'register': {'name': 'ymm0'}}], 'destination': [{'memory': {'offset': None, \
+'base': {'name': 'r12'}, 'index': {'name': 'rax'}, 'scale': 1}}], 'src_dst': [], 'operand_list': [{'register': {'name': 'ymm0'}}\
+, {'memory': {'offset': None, 'base': {'name': 'r12'}, 'index': {'name': 'rax'}, 'scale': 1}}]}, 'directive': None, 'comment': None\
+, 'label': None, 'line': 'vmovapd\t%ymm0, (%r12,%rax)', 'line_number': 182, 'flags': ['performs_store'], 'port_pressure': [0.0, \
+0.0, 0.0, 0.5, 0.0, 0.5, 0.0, 1.0, 0.0, 0.0, 0.0], 'throughput': 1.0, 'latency': 5.0, 'latency_wo_load': 5.0, 'latency_cp': 5.0,\
+ 'latency_lcd': 0}",
+		penwidth=4,
+		shape=rectangle,
+		style=bold];
+	"181: vfmadd213pd" -> "182: vmovapd"	 [label=4.0,
+		latency=4.0,
+		penwidth=3,
+		style=bold];
+	"181: LOAD"	 [fontname=italic,
+		fontsize=11.0,
+		instruction_form="{'instruction': 'vfmadd213pd', 'operands': {'source': [{'memory': {'offset': None, 'base': {'name': 'r14'}, 'index': {'name': 'rax\
+'}, 'scale': 1}}, {'register': {'name': 'ymm1'}}], 'destination': [], 'src_dst': [{'register': {'name': 'ymm0'}}], 'operand_list\
+': [{'memory': {'offset': None, 'base': {'name': 'r14'}, 'index': {'name': 'rax'}, 'scale': 1}}, {'register': {'name': 'ymm1'}},\
+ {'register': {'name': 'ymm0'}}]}, 'directive': None, 'comment': None, 'label': None, 'line': 'vfmadd213pd\t(%r14,%rax), %ymm1, \
+%ymm0', 'line_number': 181, 'flags': ['performs_load'], 'port_pressure': [0.5, 0.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, 0.0]\
+, 'throughput': 0.5, 'latency': 8.0, 'latency_wo_load': 4.0, 'latency_cp': 4.0, 'latency_lcd': 0}"];
+	"181: LOAD" -> "181: vfmadd213pd"	 [label=4.0,
+		latency=4.0];
+	"184: cmpq"	 [instruction_form="{'instruction': 'cmpq', 'operands': {'source': [{'register': {'name': 'rax'}}, {'register': {'name': 'r15'}}], 'destination': []\
+, 'src_dst': [], 'operand_list': [{'register': {'name': 'rax'}}, {'register': {'name': 'r15'}}]}, 'directive': None, 'comment': \
+None, 'label': None, 'line': 'cmpq\t%rax, %r15', 'line_number': 184, 'flags': ['lt_unknown'], 'port_pressure': [0.25, 0.0, 0.25,\
+ 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.25, 0.0], 'throughput': 0.25, 'latency': 0.0, 'latency_wo_load': 0.0, 'latency_cp': 0, 'latency\
+_lcd': 0}",
+		shape=rectangle];
+	"183: addq"	 [fillcolor=2,
+		instruction_form="{'instruction': 'addq', 'operands': {'source': [{'immediate': {'value': '32'}}], 'destination': [], 'src_dst': [{'register': {'name\
+': 'rax'}}], 'operand_list': [{'immediate': {'value': '32'}}, {'register': {'name': 'rax'}}]}, 'directive': None, 'comment': None\
+, 'label': None, 'line': 'addq\t$32, %rax', 'line_number': 183, 'flags': [], 'port_pressure': [0.25, 0.0, 0.25, 0.0, 0.0, 0.0, 0.0\
+, 0.0, 0.25, 0.25, 0.0], 'throughput': 0.25, 'latency': 1.0, 'latency_wo_load': 1.0, 'latency_cp': 0, 'latency_lcd': 1.0}",
+		shape=rectangle,
+		style=filled];
+	"183: addq" -> "183: addq"	 [color=2,
+		label=1.0,
+		latency=1.0];
+	"183: addq" -> "184: cmpq"	 [label=1.0,
+		latency=1.0];
+}
