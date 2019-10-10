@@ -1,1 +1,4 @@
+# Untracked files
 iaca3
+*.o
+build.sh
