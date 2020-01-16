@@ -1,0 +1,58 @@
+
+[0] Code Region
+
+Iterations:        100
+Instructions:      700
+Total Cycles:      215
+Total uOps:        1100
+
+Dispatch Width:    6
+uOps Per Cycle:    5.12
+IPC:               3.26
+Block RThroughput: 2.0
+
+
+Instruction Info:
+[1]: #uOps
+[2]: Latency
+[3]: RThroughput
+[4]: MayLoad
+[5]: MayStore
+[6]: HasSideEffects (U)
+
+[1]    [2]    [3]    [4]    [5]    [6]    Instructions:
+ 2      11    0.50    *                   vaddpd	(%r13,%rcx,8), %zmm3, %zmm1
+ 2      11    0.50    *                   vaddpd	64(%r13,%rcx,8), %zmm3, %zmm2
+ 2      1     1.00           *            vmovupd	%zmm1, (%r13,%rcx,8)
+ 2      1     1.00           *            vmovupd	%zmm2, 64(%r13,%rcx,8)
+ 1      1     0.25                        addq	$16, %rcx
+ 1      1     0.25                        cmpq	%r15, %rcx
+ 1      1     0.50                        jb	..B1.38
+
+
+Resources:
+[0]   - SKXDivider
+[1]   - SKXFPDivider
+[2]   - SKXPort0
+[3]   - SKXPort1
+[4]   - SKXPort2
+[5]   - SKXPort3
+[6]   - SKXPort4
+[7]   - SKXPort5
+[8]   - SKXPort6
+[9]   - SKXPort7
+
+
+Resource pressure per iteration:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    
+ -      -     1.25   1.25   1.34   1.35   2.00   1.25   1.25   1.31   
+
+Resource pressure by instruction:
+[0]    [1]    [2]    [3]    [4]    [5]    [6]    [7]    [8]    [9]    Instructions:
+ -      -     0.49    -     0.85   0.15    -     0.51    -      -     vaddpd	(%r13,%rcx,8), %zmm3, %zmm1
+ -      -     0.43    -     0.45   0.55    -     0.57    -      -     vaddpd	64(%r13,%rcx,8), %zmm3, %zmm2
+ -      -      -      -     0.02   0.54   1.00    -      -     0.44   vmovupd	%zmm1, (%r13,%rcx,8)
+ -      -      -      -     0.02   0.11   1.00    -      -     0.87   vmovupd	%zmm2, 64(%r13,%rcx,8)
+ -      -      -     0.99    -      -      -      -     0.01    -     addq	$16, %rcx
+ -      -     0.24   0.26    -      -      -     0.17   0.33    -     cmpq	%r15, %rcx
+ -      -     0.09    -      -      -      -      -     0.91    -     jb	..B1.38
